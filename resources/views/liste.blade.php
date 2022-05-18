@@ -31,7 +31,7 @@
           </li>
         </ul>
         <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Recherche" aria-label="Search">
+          <input class="form-control me-2" id="myInput" onkeyup="myFunction()" type="search" placeholder="Recherche" aria-label="Search">
           <button class="btn btn-outline-light" type="submit">Recherche</button>
         </form>
       </div>
@@ -42,14 +42,14 @@
   <h2 style="text-align: center;">Listes des etudiants</h2>
 
   <a href="formulaire">
-    <button class="btn btn-success" style="margin-left: 1000;">formulaire</button>
+    <button class="btn btn-warning" style="margin-left: 1000;">Formulaire</button>
   </a>
   <br><br>
 
   <div class="container">
     <caption>Liste des etudiants</caption>
-    <table class="table">
 
+    <table class="table" id="myTable">
       <thead>
         <tr>
           <th scope="col">numero</th>
@@ -82,10 +82,34 @@
   <footer class="bg-warning text-light">
     <h5 style="text-align: center;">Copyright@Bele.Company</h5>
   </footer>
+
   <script src="{{ asset('style/bootstrap/js/bootstrap.js') }}"></script>
   <script src="{{ asset('style/bootstrap/js/bootstrap.min.js') }}"></script>
   <script src="{{ asset('style/bootstrap/js/bootstrap.bundle.js') }}"></script>
   <script src="{{ asset('style/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+  <script>
+    function myFunction() {
+      // Declare variables
+      var input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById("myInput");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("myTable");
+      tr = table.getElementsByTagName("tr");
+
+      // Loop through all table rows, and hide those who don't match the search query
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    }
+  </script>
 </body>
 
 </html>
