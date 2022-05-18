@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EtudiantController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,10 +14,7 @@ use App\Http\Controllers\EtudiantController;
 |
 */
 
-
-Route::get('/', function () {
-    return view('accueil');
-});
-
-Route::get('formulaire', [EtudiantController::class, 'create']);
-Route::get('liste_Etudiant', [EtudiantController::class, 'index']);
+Route::get('formulaire', [EtudiantController::class, 'create'])->name('formulaire');
+Route::get('/', [EtudiantController::class, 'accueil']);
+Route::post('insertion', [EtudiantController::class, 'store'])->name('insertion');
+Route::get('liste', [EtudiantController::class, 'index'])->name('liste');

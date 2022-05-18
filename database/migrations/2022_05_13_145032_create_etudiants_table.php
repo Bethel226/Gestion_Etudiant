@@ -1,5 +1,6 @@
 <?php
 
+use Faker\Guesser\Name;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -18,7 +19,10 @@ class CreateEtudiantsTable extends Migration
             $table->string('nom');
             $table->string('prenom');
             $table->integer('age');
-            $table->string('email');
+            $table->string('genre');
+            $table->string('adresse');
+            $table->integer('telephone');
+            $table->string('mail');
             $table->timestamps();
         });
     }
